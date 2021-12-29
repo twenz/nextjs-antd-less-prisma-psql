@@ -1,6 +1,7 @@
+import axios from 'axios'
 import Head from 'next/head'
-
-export default function Home() {
+export default function Home(props) {
+  console.log('file: index.js ~ line 4 ~ props', props)
   return (
     <div>
       <Head>
@@ -13,4 +14,11 @@ export default function Home() {
       </div>
     </div>
   )
+}
+
+// export const 
+Home.getInitialProps = async (ctx) => {
+  const res = await (await axios.get('http://localhost:3000/api/users')).data
+  console.log('file: index.js ~ line 22 ~ res', res)
+  return { res }
 }
