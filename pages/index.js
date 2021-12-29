@@ -1,7 +1,15 @@
+import { Button } from 'antd'
 import axios from 'axios'
 import Head from 'next/head'
 export default function Home(props) {
-  console.log('file: index.js ~ line 4 ~ props', props)
+  const asd = props.users.map((e, i) => {
+    return (
+      <>
+        <p key={i}>{e.email}</p>
+        <Button>click</Button>
+      </>
+    )
+  })
   return (
     <div>
       <Head>
@@ -11,6 +19,7 @@ export default function Home(props) {
       </Head>
       <div>
         Hello Next + AntD
+        {asd}
       </div>
     </div>
   )
@@ -19,6 +28,5 @@ export default function Home(props) {
 // export const 
 Home.getInitialProps = async (ctx) => {
   const res = await (await axios.get('http://localhost:3000/api/users')).data
-  console.log('file: index.js ~ line 22 ~ res', res)
-  return { res }
+  return { users: res }
 }
