@@ -5,7 +5,7 @@
     "inits": "docker-compose up -d && prisma migrate dev --name init && prisma db seed && next dev",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "prisma migrate dev --name init && prisma db seed && next start",
     "lint": "next lint"
   },
   "dependencies": {

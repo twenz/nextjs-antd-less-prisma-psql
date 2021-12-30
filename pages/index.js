@@ -4,10 +4,10 @@ import Head from 'next/head'
 export default function Home(props) {
   const asd = props.users.map((e, i) => {
     return (
-      <>
+      <div key={i}>
         <p key={i}>{e.email}</p>
-        <Button>click</Button>
-      </>
+        <Button key={i} type='primary'>click</Button>
+      </div>
     )
   })
   return (
@@ -27,6 +27,7 @@ export default function Home(props) {
 
 // export const 
 Home.getInitialProps = async (ctx) => {
-  const res = await (await axios.get('http://localhost:3000/api/users')).data
+  const url = process.env.URL
+  const res = await (await axios.get(`${url}/api/users`)).data
   return { users: res }
 }
